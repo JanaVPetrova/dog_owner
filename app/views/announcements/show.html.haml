@@ -1,15 +1,26 @@
-= flash[:notice]
 %p
+  %b
+    Photo:
   = @announcement.photo
 %p
+  %b
+    Place:
   = @announcement.place
 %p
+  %b
+    Find date:
   = @announcement.fdate
 %p
+  %b
+    Info:
   = @announcement.info
 %p
+  %b
+    Contacts:
   = @announcement.contacts
 %p
-  Posted by
-  = User.find_by_id(@announcement.user_id).first_name
-  = @announcement.created_at
+  %b
+    Status:
+  = @announcement.status
+%p
+  = link_to 'Edit', edit_announcement_path(@announcement)

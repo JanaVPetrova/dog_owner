@@ -1,0 +1,39 @@
+= form_for @announcement do |f|
+  - if @announcement.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@announcement.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @announcement.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    %b
+      Photo:
+    = f.text_field :photo, :value => @announcement.photo
+
+  .field
+    %b
+      Place:
+    = f.text_field :place, :value => @announcement.place
+
+  .field
+    %b
+      Find date:
+    = f.date_select :fdate, :value => @announcement.fdate
+
+  .field
+    %b
+      Info:
+    = f.text_field :info, :value => @announcement.info
+
+  .field
+    %b
+      Contacts:
+    = f.text_field :contacts, :value => @announcement.contacts
+
+  .field
+    %b
+      Status:
+    = f.check_box :status, :value => @announcement.status
+
+  .actions
+    = f.submit 'Save'
