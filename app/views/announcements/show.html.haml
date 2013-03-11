@@ -1,0 +1,15 @@
+= flash[:notice]
+%p
+  = @announcement.photo
+%p
+  = @announcement.place
+%p
+  = @announcement.fdate
+%p
+  = @announcement.info
+%p
+  = @announcement.contacts
+%p
+  Posted by
+  = User.find_by_id(@announcement.user_id).first_name
+  = @announcement.created_at

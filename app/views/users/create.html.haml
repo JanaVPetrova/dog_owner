@@ -1,0 +1,21 @@
+
+
+= flash[:notice]
+= form_tag do
+  login
+  %br
+  = text_field_tag :login, params[:login]
+  %br
+    password
+  = password_field_tag :password, params[:password]
+  %br
+    first name
+  = text_field_tag :first_name, params[:first_name]
+  %br
+    last name
+  = text_field_tag :last_name, params[:last_name]
+  %br
+    email
+  = text_field_tag :email, params[:email]
+  %br
+  = submit_tag 'Registration', action: 'create'

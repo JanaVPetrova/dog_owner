@@ -1,0 +1,25 @@
+= flash[:notice]
+= form_for @announcement do |f|
+  = f.label :photo
+  %br
+  = f.text_field :photo
+  %br
+  = f.label :place
+  %br
+  = f.text_field :place
+  %br
+  = f.label :contacts
+  %br
+  = f.text_field :contacts
+  %br
+  = f.label :find_date
+  %br
+  = f.date_select :fdate
+  %br
+  %br
+  = f.label :info
+  %br
+  = f.text_area :info, style: 'resize: none; width: 400px; height: 100px;'
+
+  %br
+  = f.submit
