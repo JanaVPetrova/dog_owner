@@ -5,6 +5,7 @@ DogOwner::Application.routes.draw do
 
   match '/login', :to => 'users#login'
   match '/logout', :to => 'users#logout'
+  match '/my_announcements', :to => 'announcements#my_announcements'
   match 'announcements/new', :to => 'announcements#new'
   match 'announcement/:id', :to => 'announcements#show'
 

@@ -56,7 +56,6 @@ class AnnouncementsController < ApplicationController
         redirect_to :action => "show", :id => params[:id]
       end
     end
-
   end
 
   def update
@@ -72,4 +71,13 @@ class AnnouncementsController < ApplicationController
       end
     end
   end
+
+  def my_announcements
+    if session[:user_id].nil?
+      redirect_to :controller => :users,:action => :login, notice: 'login first'
+    else
+      @announcements = Announcement.find_all_by_user_id(session[:user_id])
+    end
+  end
+
 end
