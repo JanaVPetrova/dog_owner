@@ -1,9 +1,10 @@
 DogOwner::Application.routes.draw do
   resources :users
   resources :announcements
-  root :to => 'users#new'
+  root :to => 'users#login'
 
   match '/login', :to => 'users#login'
+  match '/logout', :to => 'users#logout'
   match 'announcements/new', :to => 'announcements#new'
   match 'announcement/:id', :to => 'announcements#show'
 

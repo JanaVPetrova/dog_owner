@@ -1,4 +1,14 @@
 class AnnouncementsController < ApplicationController
+
+  def index
+    @announcements = Announcement.find_all_by_status(true)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @announcements }
+    end
+  end
+
   def show
     @announcement = Announcement.find(params[:id])
 
@@ -9,6 +19,9 @@ class AnnouncementsController < ApplicationController
   end
 
   def new
+    if session[:user_id].nil?
+      redirect_to :controller => :users,:action => :login, notice: 'login first'
+    end
     @announcement = Announcement.new
 
     #respond_to do |format|
@@ -34,7 +47,16 @@ class AnnouncementsController < ApplicationController
   end
 
   def edit
-    @announcement = Announcement.find(params[:id])
+    if session[:user_id].nil?
+      redirect_to :controller => :users,:action => :login, notice: 'login first'
+    else
+      if User.find_by_id(session[:user_id]).permission === 'admin'
+        @announcement = Announcement.find(params[:id])
+      else
+        redirect_to :action => "show", :id => params[:id]
+      end
+    end
+
   end
 
   def update

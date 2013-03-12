@@ -1,9 +1,16 @@
-= flash[:notice]
-= form_tag do
-  login
-  = text_field_tag :login, params[:login]
-  %br
-  password
-  = password_field_tag :password, params[:password]
-  %br
-  = submit_tag 'Login'
+= params[:notice]
+- if session[:user_id].nil?
+
+  = form_tag do
+    login
+    = text_field_tag :login, params[:login]
+    password
+    = password_field_tag :password, params[:password]
+    = submit_tag 'Login'
+
+- else
+  = form_for @user, :url => 'logout' do |f|
+    Hello,
+    = @user.first_name
+    = @user.last_name
+    = f.submit 'Log out'

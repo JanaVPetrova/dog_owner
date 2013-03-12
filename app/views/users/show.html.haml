@@ -12,3 +12,7 @@
 %p
   %b email:
   = @user.email
+
+= session[:user_id]
+
+= link_to 'Edit', edit_announcement_path(1)

@@ -1,0 +1,25 @@
+%table{ :style => 'border: 1px solid black; rules: all;' }
+  %tr
+    %th Photo
+    %th Place
+    %th Info
+    %th Contacts
+    %th Status
+    %th User Id
+    %th Find Date
+    %th
+    %th
+    %th
+
+  - @announcements.each do |announcement|
+    %tr
+      %td= announcement.photo
+      %td= announcement.place
+      %td= announcement.info
+      %td= announcement.contacts
+      %td= announcement.status
+      %td= announcement.user_id
+      %td= announcement.fdate
+      %td= link_to 'Show', announcement
+      %td= link_to 'Edit', edit_announcement_path(announcement)
+%br
