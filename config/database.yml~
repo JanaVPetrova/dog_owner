@@ -20,3 +20,5 @@ production:
   encoding: unicode
   database: dog_owner_production
   pool: 5
+  username: vencarbon
+  password: gfhfljrc
