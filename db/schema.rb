@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130311163511) do
+ActiveRecord::Schema.define(:version => 20130311134520) do
 
   create_table "announcements", :force => true do |t|
     t.string   "photo"
@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(:version => 20130311163511) do
     t.date     "fdate"
     t.text     "info"
     t.string   "contacts"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
     t.integer  "user_id"
     t.boolean  "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

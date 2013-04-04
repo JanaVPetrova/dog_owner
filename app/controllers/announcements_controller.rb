@@ -47,7 +47,7 @@ class AnnouncementsController < ApplicationController
   end
 
   def edit
-    if session[:user_id].nil?
+    if User.find_by_id(session[:user_id]).nil?
       redirect_to :controller => :users,:action => :login, notice: 'login first'
     else
       if User.find_by_id(session[:user_id]).permission === 'admin'

@@ -8,6 +8,8 @@ development:
   encoding: unicode
   database: dog_owner_development
   pool: 5
+  username: vencarbon
+  password: gfhfljrc
 
 test:
   adapter: postgresql
@@ -20,5 +22,3 @@ production:
   encoding: unicode
   database: dog_owner_production
   pool: 5
-  username: vencarbon
-  password: gfhfljrc
