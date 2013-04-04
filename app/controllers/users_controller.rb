@@ -24,14 +24,15 @@ class UsersController < ApplicationController
   end
 
   def login
-    if session[:user_id].nil?
+    if cookies[:user_id].nil?
       if request.post?
         @user = User.find_by_login(params[:login])
         if @user.nil?
           flash[:notice] = 'wrong login'
         else
           if @user.password === params[:password]
-            session[:user_id] = @user.id
+            cookies[:user_id] = @user.id
+            cookies[:permission] = @user.permission
             #respond_to do |format|
             #  format.html { redirect_to @user }
             #end
@@ -41,12 +42,13 @@ class UsersController < ApplicationController
         end
       end
     else
-      @user = User.find_by_id(session[:user_id])
+      @user = User.find_by_id(cookies[:user_id])
     end
   end
 
   def logout
-    session[:user_id] = nil
+    cookies.delete :user_id
+    cookies.delete :permission
     redirect_to ''
   end
 

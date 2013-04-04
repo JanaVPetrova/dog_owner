@@ -23,4 +23,5 @@
     Status:
   = @announcement.status
 %p
-  = link_to 'Edit', edit_announcement_path(@announcement)
+  - if @edit_show
+    = link_to 'Edit', edit_announcement_path(@announcement)

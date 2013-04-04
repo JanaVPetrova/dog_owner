@@ -1,5 +1,5 @@
 = params[:notice]
-- if session[:user_id].nil?
+- if cookies[:user_id].nil?
 
   = form_tag do
     login

@@ -4,13 +4,17 @@ class User < ActiveRecord::Base
   
   validates_uniqueness_of :login
   validates_confirmation_of :password
-  validates :login, :presence => true
-  validates :password, :presence => true
+  validates_presence_of :login
+  validates_presence_of :password
+
+  validates_presence_of :first_name
+  validates_presence_of :last_name
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, :presence => true,
                     :format   => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
-  validates :first_name, :presence => true
-  validates :last_name, :presence => true
+
+
+  has_many :announcements
   
 end

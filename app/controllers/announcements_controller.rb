@@ -1,7 +1,7 @@
 class AnnouncementsController < ApplicationController
 
   def index
-    @announcements = Announcement.find_all_by_status(true)
+    @announcements = Announcement.find_all_by_status(false)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,6 +11,7 @@ class AnnouncementsController < ApplicationController
 
   def show
     @announcement = Announcement.find(params[:id])
+    @edit_show = User.find_by_id(cookies[:user_id]).permission === 'admin'
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,8 +20,8 @@ class AnnouncementsController < ApplicationController
   end
 
   def new
-    if session[:user_id].nil?
-      redirect_to :controller => :users,:action => :login, notice: 'login first'
+    if cookies[:user_id].nil?
+      redirect_to :controller => :users, :action => :login, notice: 'login first'
     end
     @announcement = Announcement.new
 
@@ -32,7 +33,7 @@ class AnnouncementsController < ApplicationController
 
   def create
     @announcement = Announcement.new(params[:announcement])
-    @announcement.user_id=session[:user_id]
+    @announcement.user_id=cookies[:user_id]
     @announcement.status=false
 
     respond_to do |format|
@@ -47,10 +48,10 @@ class AnnouncementsController < ApplicationController
   end
 
   def edit
-    if User.find_by_id(session[:user_id]).nil?
+    if User.find_by_id(cookies[:user_id]).nil?
       redirect_to :controller => :users,:action => :login, notice: 'login first'
     else
-      if User.find_by_id(session[:user_id]).permission === 'admin'
+      if User.find_by_id(cookies[:user_id]).permission === 'admin'
         @announcement = Announcement.find(params[:id])
       else
         redirect_to :action => "show", :id => params[:id]
@@ -73,10 +74,10 @@ class AnnouncementsController < ApplicationController
   end
 
   def my_announcements
-    if session[:user_id].nil?
+    if cookies[:user_id].nil?
       redirect_to :controller => :users,:action => :login, notice: 'login first'
     else
-      @announcements = Announcement.find_all_by_user_id(session[:user_id])
+      @announcements = Announcement.find_all_by_user_id(cookies[:user_id])
     end
   end
 
